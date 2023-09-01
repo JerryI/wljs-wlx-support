@@ -5,9 +5,9 @@ PacletRepositories[{
 <<JerryI`WLX`Importer`
 <<JerryI`WLX`WLJS`
 
-JerryI`WolframJSFrontend`Evaluator`WLXEvaluator[str_String, signature_, type_:String][callback_] := Module[{},
+JerryI`WolframJSFrontend`Evaluator`WLXEvaluator[str_String, signature_, type_:String, opts___][callback_] := Module[{},
   Block[{$CellUid = CreateUUID[]},
-   With[{res = ProcessString[str, "Localize"->True] // ReleaseHold},     
+   With[{res = (ProcessString[str, "Localize"->True, opts]  // ReleaseHold)},     
     callback[
       If[ListQ[res], StringRiffle[Map[ToString, Select[res, (# =!= Null)&]], ""], ToString[res]],
       $CellUid, 

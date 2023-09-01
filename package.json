@@ -1,6 +1,6 @@
 {
   "name": "wljs-wlx-support",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "WLX cells support for WLJS Editor",
   "scripts": {
     "build": "node --max-old-space-size=8192 ./node_modules/.bin/rollup --config rollup.config.mjs"
@@ -9,7 +9,8 @@
     "jsmodule": "dist/kernel.js",
     "wl": "src/processor.wl",
     "wlkernel": "src/evaluator.wl",
-    "css": "src/styles.css"
+    "css": "src/styles.css",
+    "priority": 500
   },
   "repository": {
     "type": "git",
