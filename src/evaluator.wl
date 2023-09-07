@@ -17,3 +17,7 @@ JerryI`WolframJSFrontend`Evaluator`WLXEvaluator[str_String, signature_, type_:St
    ];
   ]
 ];
+
+
+JerryI`WLX`Private`IdentityTransform[EventObject[assoc_]] := If[KeyExistsQ[assoc, "view"], CreateFrontEndObject[assoc["view"]], EventObject[assoc]]
+JerryI`WLX`Private`IdentityTransform[x_] := x /. JerryI`WolframJSFrontend`WebObjects`replacement 
