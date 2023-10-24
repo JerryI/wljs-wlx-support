@@ -20,4 +20,7 @@ JerryI`WolframJSFrontend`Evaluator`WLXEvaluator[str_String, signature_, type_:St
 
 
 JerryI`WLX`Private`IdentityTransform[EventObject[assoc_]] := If[KeyExistsQ[assoc, "view"], CreateFrontEndObject[assoc["view"]], EventObject[assoc]]
-JerryI`WLX`Private`IdentityTransform[x_] := x /. JerryI`WolframJSFrontend`WebObjects`replacement 
+JerryI`WLX`Private`IdentityTransform[x_] := x /. JerryI`WolframJSFrontend`Evaluator`replacements
+
+ListLinePlotly /: JerryI`WLX`Private`IdentityTransform[ListLinePlotly[args__]] := CreateFrontEndObject[ListLinePlotly[args]]
+ListPlotly /: JerryI`WLX`Private`IdentityTransform[ListPlotly[args__]] := CreateFrontEndObject[ListPlotly[args]]
