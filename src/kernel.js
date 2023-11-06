@@ -1,4 +1,6 @@
 class WLXCell {
+    ref = []
+
     dispose() {
       
     }
@@ -13,6 +15,7 @@ class WLXCell {
       
       const fe = [];
 
+      const self = this;
 
       const feReplacer = (fe, offset=0) => {
         return function (match, index) {
