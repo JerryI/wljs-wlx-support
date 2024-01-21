@@ -8,10 +8,8 @@
   },
   "defaultPackage": true,
   "wljs-meta": {
-    "jsmodule": "dist/kernel.js",
-    "wl": "src/processor.wl",
-    "wlkernel": "src/evaluator.wl",
-    "css": "src/styles.css",
+    "js": "dist/kernel.js",
+    "styles": "src/styles.css",
     "priority": 500
   },
   "repository": {
