@@ -1,3 +1,5 @@
+let count = 0;
+
 class WLXCell {
     ref = []
 
@@ -7,6 +9,7 @@ class WLXCell {
     
     constructor(parent, data) {
       let string = data;
+      count++;
 
       const r = {
         fe: new RegExp(/FrontEndExecutable\[([^\[|\]]+)\]/g),
@@ -20,8 +23,9 @@ class WLXCell {
       const feReplacer = (fe, offset=0) => {
         return function (match, index) {
           const uid = match.slice(19 + offset,-1);
-          fe.push(uid);
-          return `<div id="${uid}" class="wlx-frontend-object"></div>`;
+          count++;
+          fe.push([uid, count]);
+          return `<div id="wlx-${count}-${uid}" class="wlx-frontend-object"></div>`;
         }
       } 
 
@@ -32,19 +36,42 @@ class WLXCell {
       setInnerHTML(parent.element, string);
       parent.element.classList.add('padding-fix');
 
-      fe.forEach((obj, i) => {
-        setTimeout(async () => {
+      const runOverFe = async function () {
+        for (const o of fe) {
+          const uid = o[0];
+          const c   = o[1];
+
           const cuid = Date.now() + Math.floor(Math.random() * 10009);
           var global = {call: cuid};
       
-          let env = {global: global, element: document.getElementById(obj)}; //Created in CM6
-          console.log("CM6: creating an object with key "+this.name);
-          const fobj = new ExecutableObject(obj, env);
-          fobj.execute()     
+          let env = {global: global, element: document.getElementById(`wlx-${c}-${uid}`)}; 
+          console.log("WLX: creating an object with key "+self.name);
+
+
+          console.log('forntend executable');
+
+          let obj;
+          console.log('check cache');
+          if (ObjectHashMap[uid]) {
+              obj = ObjectHashMap[uid];
+          } else {
+              obj = new ObjectStorage(uid);
+          }
+          console.log(obj);
       
-          self.ref.push(fobj);          
-        }, (i+1) * 200)
-      });
+          const copy = {...env};
+          const store = await obj.get();
+          const instance = new ExecutableObject('wlx-stored-'+uuidv4(), copy, store);
+          instance.assignScope(copy);
+          obj.assign(instance);
+      
+          instance.execute();          
+      
+          self.ref.push(instance);          
+      };
+    };
+
+    runOverFe();
 
       return this;
     }

@@ -8,7 +8,8 @@
   },
   "defaultPackage": true,
   "wljs-meta": {
-    "js": "dist/kernel.js",
+    "frontend": "src/Frontend.wl",
+    "js": "src/kernel.js",
     "styles": "src/styles.css",
     "priority": 500
   },
