@@ -1,7 +1,3 @@
-PacletRepositories[{
-    Github -> "https://github.com/JerryI/wl-wlx" -> "dev"
-}, "Directory" -> FileNameJoin[{Directory[], "__localkernel", "wlx-support"}] ];
-
 BeginPackage["Notebook`Editor`WLXTools`", {
     "JerryI`Notebook`Kernel`", 
     "JerryI`Notebook`Transactions`",
@@ -9,6 +5,8 @@ BeginPackage["Notebook`Editor`WLXTools`", {
     "JerryI`WLX`",
     "JerryI`WLX`Importer`"
 }];
+
+WLXEmbed::usage = "WLXEmbed[{str__String}] embeds str line into the container of FrontendObject"
 
 Begin["`Private`"]
 
@@ -28,7 +26,7 @@ ExpressionReplacements = {
     Image[opts__] :> Global`CreateFrontEndObject[Image[opts]]
 };
 
-JerryI`WLX`Private`IdentityTransform[EventObject[assoc_]] := If[KeyExistsQ[assoc, "view"], Global`CreateFrontEndObject[ assoc["view"]], EventObject[assoc] ]
+JerryI`WLX`Private`IdentityTransform[EventObject[assoc_]] := If[KeyExistsQ[assoc, "View"], Global`CreateFrontEndObject[ assoc["View"]], EventObject[assoc] ]
 JerryI`WLX`Private`IdentityTransform[x_] := x /. ExpressionReplacements
 
 ListLinePlotly /: JerryI`WLX`Private`IdentityTransform[ListLinePlotly[args__]] := Global`CreateFrontEndObject[ListLinePlotly[args]]
