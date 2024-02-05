@@ -11,7 +11,8 @@
     "frontend": "src/Frontend.wl",
     "js": "src/kernel.js",
     "styles": "src/styles.css",
-    "priority": 500
+    "priority": 500,
+    "category": "Cell types"
   },
   "repository": {
     "type": "git",
