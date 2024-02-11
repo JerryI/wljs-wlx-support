@@ -7,8 +7,6 @@ BeginPackage["Notebook`Editor`WLXTools`", {
     "Notebook`Editor`FrontendObject`"
 }];
 
-WLXEmbed::usage = "WLXEmbed[{str__String}] embeds str line into the container of FrontendObject"
-
 Begin["`Private`"]
 
 Notebook`WLXEvaluator = Function[t,  With[{hash = CreateUUID[]},
