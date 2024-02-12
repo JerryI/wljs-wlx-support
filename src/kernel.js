@@ -1,10 +1,16 @@
 let count = 0;
 
 class WLXCell {
-    ref = []
+    envs = []
 
     dispose() {
-      
+      console.warn('WLX cell dispose...');
+      for (const env of this.envs) {
+        for (const obj of Object.values(env.global.stack))  {
+          console.log('dispose');
+          obj.dispose();
+        }
+      }
     }
     
     constructor(parent, data) {
@@ -59,7 +65,7 @@ class WLXCell {
           }
           console.log(obj);
       
-          const copy = {...env};
+          const copy = env;
           const store = await obj.get();
           const instance = new ExecutableObject('wlx-stored-'+uuidv4(), copy, store);
           instance.assignScope(copy);
@@ -67,7 +73,7 @@ class WLXCell {
       
           instance.execute();          
       
-          self.ref.push(instance);          
+          self.envs.push(env);          
       };
     };
 

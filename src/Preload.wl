@@ -10,7 +10,7 @@ BeginPackage["Notebook`Editor`WLXTools`", {
 Begin["`Private`"]
 
 Notebook`WLXEvaluator = Function[t,  With[{hash = CreateUUID[]},
-        Block[{Global`$EvaluationContext = Join[t["EvaluationContext"], <|"EvaluationCellHash" -> hash|>]},
+        Block[{Global`$EvaluationContext = Join[t["EvaluationContext"], <|"ResultCellHash" -> hash|>]},
             With[{result = ProcessString[t["Data"], "Localize"->False]  // ReleaseHold},
                 With[{string = If[ListQ[result], StringRiffle[Map[ToString, Select[result, (# =!= Null)&]], ""], ToString[result] ]},
                     EventFire[Internal`Kernel`Stdout[ t["Hash"] ], "Result", <|"Data" -> string, "Meta" -> Sequence["Display"->"wlx", "Hash"->hash] |> ];
