@@ -8,11 +8,12 @@
   },
   "defaultPackage": true,
   "wljs-meta": {
-    "jsmodule": "dist/kernel.js",
-    "wl": "src/processor.wl",
-    "wlkernel": "src/evaluator.wl",
-    "css": "src/styles.css",
-    "priority": 500
+    "frontend": "src/Frontend.wl",
+    "minjs": "src/kernel.js",
+    "js": "src/kernel.js",
+    "styles": "src/styles.css",
+    "priority": 500,
+    "category": "Cell types"
   },
   "repository": {
     "type": "git",
