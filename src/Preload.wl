@@ -21,13 +21,14 @@ Notebook`WLXEvaluator = Function[t,  With[{hash = CreateUUID[]},
     ]
 ];
 
+System`DatasetWrapper;
 
 ExpressionReplacements = {
     Graphics[opts__] :> CreateFrontEndObject[Graphics[opts]], 
     Graphics3D[opts__] :> CreateFrontEndObject[Graphics3D[opts]], 
     Image[opts__] :> CreateFrontEndObject[Image[opts]],
     s_Sound :> CreateFrontEndObject[s],
-    d_Dataset :> CreateFrontEndObject[d]
+    d_Dataset :> DatasetWrapper[d]
 } // Quiet;
 
 
