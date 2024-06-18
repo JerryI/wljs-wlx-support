@@ -29,7 +29,7 @@ evaluator  = StandardEvaluator["Name" -> "WLX Evaluator", "InitKernel" -> init, 
                 Module[{monitor},
                 
                     monitor["Start"] := With[{},
-                        monitor["Spinner"] = Global`NotificationSpinner["Topic"->"Fetching WLX Packages", "Body"->"Please, wait"];
+                        monitor["Spinner"] = Notifications`Spinner["Topic"->"Fetching WLX Packages", "Body"->"Please, wait"];
                         EventFire[k, monitor["Spinner"], Null];
                     ];
 
