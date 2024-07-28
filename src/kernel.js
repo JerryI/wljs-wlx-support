@@ -82,11 +82,13 @@ class WLXCell {
       return this;
     }
   }
+
+  const codemirror = window.SupportedCells['codemirror'].context; 
   
   window.SupportedLanguages.push({
     check: (r) => {return(r[0] === '.wlx')},
-    plugins: [window.html()],
-    name: window.htmlLanguage.name
+    plugins: [codemirror.html()],
+    name: codemirror.htmlLanguage.name
   });
 
   window.SupportedCells['wlx'] = {
