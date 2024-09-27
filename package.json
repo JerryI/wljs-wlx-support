@@ -1,10 +1,10 @@
 {
   "name": "wljs-wlx-support",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "WLX cells support for WLJS Editor",
   "scripts": {
     "build": "node --max-old-space-size=8192 ./node_modules/.bin/rollup --config rollup.config.mjs",
-    "restore": "mkdir _temp && cd _temp && git clone https://github.com/JerryI/wljs-wlx-support && mv wljs-wlx-support/.git ../.git && cd .. && rm -rf _temp"
+    "restore": "mkdir _temp && cd _temp && git clone --branch dev https://github.com/JerryI/wljs-wlx-support && mv wljs-wlx-support/.git ../.git && cd .. && rm -rf _temp"
   },
   "defaultPackage": true,
   "wljs-meta": {
