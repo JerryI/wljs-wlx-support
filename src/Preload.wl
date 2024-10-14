@@ -25,8 +25,6 @@ System`DatasetWrapper;
 System`AudioWrapper;
 
 ExpressionReplacements = {
-    s_Sound :> CreateFrontEndObject[s ],
-    s_Audio :> AudioWrapper[s],
     d_Dataset :> DatasetWrapper[d]
 } // Quiet;
 
